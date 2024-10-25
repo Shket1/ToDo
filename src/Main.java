@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        Manager manager = new Manager();
+        inMemoryTaskManager inMemoryTaskManager = new inMemoryTaskManager();
+        Managers manager = new Managers();
 
         Task task1 = new Task("Task1", "go to home");
         Task task2 = new Task("Task2", "go to street");
@@ -16,25 +17,30 @@ public class Main {
         epic1.addSubtask(subtask2);
         epic2.addSubtask(subtask3);
 
-        manager.createTask(task1);
-        manager.createTask(task2);
+        inMemoryTaskManager.createTask(task1);
+        inMemoryTaskManager.createTask(task2);
 
-        manager.createTask(epic1);
-        manager.createTask(epic2);
+        inMemoryTaskManager.createTask(epic1);
+        inMemoryTaskManager.createTask(epic2);
 
         subtask1.setStatus(Status.DONE);
         subtask2.setStatus(Status.IN_PROGRESS);
-        manager.updateTask(subtask1);
-        manager.updateTask(subtask2);
+        inMemoryTaskManager.updateTask(subtask1);
+        inMemoryTaskManager.updateTask(subtask2);
 
         task1.setStatus(Status.IN_PROGRESS);
-        manager.updateTask(task1);
+        inMemoryTaskManager.updateTask(task1);
 
-        manager.getTasks();
+        inMemoryTaskManager.getTasks();
         System.out.println("________________________________________________________________________");
 
-        manager.removeById(2);
+        inMemoryTaskManager.getTasks();
 
-        manager.getTasks();
+        inMemoryTaskManager.getById(2);
+        inMemoryTaskManager.getById(3);
+        inMemoryTaskManager.getById(2);
+
+        System.out.println("---History---");
+        Managers.getDefaultHistory().getHistory();
     }
 }
